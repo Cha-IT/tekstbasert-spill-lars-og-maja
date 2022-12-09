@@ -10,30 +10,30 @@ class Person():
     def introduksjon(self):
         print(f"{self.navn}, hun er {self.alder} år gammel. Hun liker {self.liker}, men liker ikke {self.likerIkke}. Hun går {self.linje}.")
     
-    def førsteSpørsmål(self):
+    def førsteSpørsmål(self, valg1):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         valg2 = ""
-        while valg2!="Vennlig":
+        while valg2!="vennlig":
             valg2=input()
-            if valg2=="Frekk":
+            if valg2=="frekk":
                 break
-            else:
+            elif valg2 != "vennlig":
                 print("Svaret er ikke gyldig, prøv på nytt.")
-        if self.navn == "Olivia":
-            if valg2 == "Vennlig":
-                print("")
-            elif valg2 == "Frekk":
-                print("")
-        elif self.navn == "Brian":
-            if valg2 == "Vennlig":
-                print("")
-            elif valg2 == "Frekk":
-                print("")
-        elif self.navn == "Kat":
-            if valg2 == "Vennlig":
-                print("")
-            elif valg2 == "Frekk":
-                print("")
+        if valg1 == "Olivia":
+            if valg2 == "vennlig":
+                print(":)")
+            elif valg2 == "frekk":
+                print(":(")
+        elif valg1 == "Brian":
+            if valg2 == "vennlig":
+                print(":)")
+            elif valg2 == "frekk":
+                print(":(")
+        elif valg1 == "Kat":
+            if valg2 == "vennlig":
+                print(":)")
+            elif valg2 == "frekk":
+                print(":(")
 
 class Mann(Person):
     def __init__(self, navn, alder, liker, likerIkke, linje, valg2=0) -> None:
@@ -71,12 +71,25 @@ while valg1!="Olivia":
         break
     elif valg1=="Kat":
         break
-    else:
+    elif valg1 != "Olivia":
         print("Navnet er ikke gyldig, prøv på nytt.")
 
-if valg1 == "Olivia": 
-    Olivia.førsteSpørsmål()
-elif valg1 == "Brian": 
-    Brian.førsteSpørsmål()
-elif valg1 == "Kat": 
-    Kat.førsteSpørsmål()
+introduksjoner = 0
+
+while introduksjoner < 3:
+    if valg1 == "Olivia": 
+        Olivia.førsteSpørsmål(valg1)
+        introduksjoner += 1
+        if introduksjoner != 3:
+            valg1 = input("Hvem vil du snakke med nå? ")
+    elif valg1 == "Brian": 
+        Brian.førsteSpørsmål(valg1)
+        introduksjoner += 1
+        if introduksjoner != 3:
+            valg1 = input("Hvem vil du snakke med nå? ")
+    elif valg1 == "Kat": 
+        Kat.førsteSpørsmål(valg1)
+        introduksjoner += 1
+        if introduksjoner != 3:
+            valg1 = input("Hvem vil du snakke med nå? ")
+        
