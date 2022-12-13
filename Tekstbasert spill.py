@@ -136,6 +136,7 @@ print("")
 print("Hei, velkommen til charlottenlund videregående skole. Det er din første dag på denne skolen etter at du flyttet fra gokk(Malvik). Nå er det lunsj, men du fant ingen å spise lunsj med i klassen din. Du ser tre vennlige fjes som du kanskje vil bli kjent med bedre.")
 print("Hva heter du?")
 spillerNavn = input()
+print("")
 
 print("Først har vi ", end="")
 Olivia.introduksjon()
