@@ -19,11 +19,14 @@ class Olivia(Person):
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         valg2 = ""
-        while valg2!="vennlig":
+        i==0
+        while i==0:
             valg2=input()
             if valg2=="frekk":
                 break
-            elif valg2 != "vennlig":
+            elif valg2 == "vennlig":
+                break
+            else:
                 print("Svaret er ikke gyldig, prøv på nytt.")
         if valg2 == "vennlig":
             self.valg2 = True
@@ -57,11 +60,14 @@ class Kat(Person):
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         valg2 = ""
-        while valg2!="vennlig":
+        i==0
+        while i==0:
             valg2=input()
             if valg2=="frekk":
                 break
-            elif valg2 != "vennlig":
+            elif valg2 == "vennlig":
+                break
+            else:
                 print("Svaret er ikke gyldig, prøv på nytt.")
                 
         if valg2 == "vennlig":
@@ -95,11 +101,14 @@ class Brian(Person):
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         valg2 = ""
-        while valg2!="vennlig":
+        i==0
+        while i==0:
             valg2=input()
             if valg2=="frekk":
                 break
-            elif valg2 != "vennlig":
+            elif valg2 == "vennlig":
+                break
+            else:
                 print("Svaret er ikke gyldig, prøv på nytt.")
         if valg2 == "vennlig":
             self.valg2 = True
@@ -150,29 +159,33 @@ print("")
 print(f"Hvem vil du snakke med? {list[0]}, {list[1]} eller {list[2]}? ")
 valg1 = ""
 valg1 = gyldigSvar(valg1)
+i=0
 
 if valg1 == "Olivia": 
     Olivia.førsteSpørsmål()
     list.remove("Olivia")
     print(f"Hvem vil du snakke med nå? {list[0]} eller {list[1]}? ")
-    nesteValg1 = ""
-    while nesteValg1!=list[0]:
+    while i==0:
         nesteValg1=input()
-        if nesteValg1==list[1]:
+        if nesteValg1==list[0]:
             break
-        elif nesteValg1 != list[0]:
+        elif nesteValg1==list[1]:
+            break
+        else:
             print("Navnet er ikke gyldig, prøv på nytt.")
     if nesteValg1 == "Brian":
         Brian.førsteSpørsmål()
+        list.remove("Brian")
     elif nesteValg1 == "Kat":
         Kat.førsteSpørsmål()
-        
+        list.remove("Kat")        
+
 elif valg1 == "Brian": 
     Brian.førsteSpørsmål()
     list.remove("Brian")
     print(f"Hvem vil du snakke med nå? {list[0]} eller {list[1]}? ")
     nesteValg1 = ""
-    while nesteValg1!=list[0]:
+    while i==0:
         nesteValg1=input()
         if nesteValg1==list[1]:
             break
@@ -180,10 +193,12 @@ elif valg1 == "Brian":
             print("Navnet er ikke gyldig, prøv på nytt.")
     if nesteValg1 == "Olivia":
         Olivia.førsteSpørsmål()
+        list.remove("Olivia")
     elif nesteValg1 == "Kat":
-        Kat.førsteSpørsmål()
-        
-elif valg1 == "Kat": 
+        Kat.førsteSpørsmål()        
+        list.remove("Kat")
+
+elif i==0: 
     Kat.førsteSpørsmål()
     list.remove("Kat")
     print(f"Hvem vil du snakke med nå? {list[0]} eller {list[1]}? ")
@@ -196,8 +211,10 @@ elif valg1 == "Kat":
             print("Navnet er ikke gyldig, prøv på nytt.")
     if nesteValg1 == "Brian":
         Brian.førsteSpørsmål()
+        list.remove("Brian")
     elif nesteValg1 == "Olivia":
         Olivia.førsteSpørsmål()
+        list.remove("Olivia")
 
 if list[0] == "Olivia":
     Olivia.førsteSpørsmål()
