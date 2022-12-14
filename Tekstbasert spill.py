@@ -19,11 +19,14 @@ class Olivia(Person):
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         valg2 = ""
-        while valg2!="vennlig":
+        i==0
+        while i==0:
             valg2=input()
             if valg2=="frekk":
                 break
-            elif valg2 != "vennlig":
+            elif valg2 == "vennlig":
+                break
+            else:
                 print("Svaret er ikke gyldig, prøv på nytt.")
         if valg2 == "vennlig":
             self.valg2 = True
@@ -57,11 +60,14 @@ class Kat(Person):
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         valg2 = ""
-        while valg2!="vennlig":
+        i==0
+        while i==0:
             valg2=input()
             if valg2=="frekk":
                 break
-            elif valg2 != "vennlig":
+            elif valg2 == "vennlig":
+                break
+            else:
                 print("Svaret er ikke gyldig, prøv på nytt.")
                 
         if valg2 == "vennlig":
@@ -95,11 +101,14 @@ class Brian(Person):
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         valg2 = ""
-        while valg2!="vennlig":
+        i==0
+        while i==0:
             valg2=input()
             if valg2=="frekk":
                 break
-            elif valg2 != "vennlig":
+            elif valg2 == "vennlig":
+                break
+            else:
                 print("Svaret er ikke gyldig, prøv på nytt.")
         if valg2 == "vennlig":
             self.valg2 = True
