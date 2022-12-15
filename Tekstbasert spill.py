@@ -19,7 +19,7 @@ class Olivia(Person): # Her har vi den første subklassen til Person hvor denne 
         super().__init__(navn, alder, liker, likerIkke, linje, førsteValg, andreValg, sisteValg) # Her innhenter den de tidligere atributtene til Person.
         
     def førsteSpørsmål(self): # Alle karakterene har en lik funksjon som heter førsteSpørsmål, men hva de sier er ulikt som forklarer hvorfor de står i hver subklasse.
-        "Funksjonen tar ikke inn noen parametere og returnerer ingen verdier. Den endrer førsteValg til True eller False basert på om spilleren er frekk eller vennlig. Funksjonen finnes i hver av person-subklassene og gjør at svarene til hver person er unik. Hvilken rekkefølge man får opp svarene fra hver person bestemmes av spilleren"
+        "Funksjonen tar inn 'self' som parameter og returnerer ingen verdier. Den endrer førsteValg til True eller False basert på om spilleren er frekk eller vennlig. Funksjonen finnes i hver av person-subklassene og gjør at svarene til hver person er unik. Hvilken rekkefølge man får opp svarene fra hver person bestemmes av spilleren"
         skrivOrd(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?") # Her får du spørsmålet om du vil være vennlig eller frekk
         førsteValg = sjekkVennFrekk() #Kaller funksjonen som sikrer at svaret er enten "frekk" eller "vennlig"
         if førsteValg == "vennlig": #Printer ut tekst basert på om spilleren valgte å være vennlig eller frekk
@@ -43,6 +43,7 @@ class Olivia(Person): # Her har vi den første subklassen til Person hvor denne 
             skrivOrd("")
         
     def andreSpørsmål(self): #Alle karakterene har denne funksjonen. Den spilles av hvis du velger å bli ekstra kjent med denne personen.
+        """Funksjonen skriver ut spørsmål nummer 2 fra Olivia. Positiv reaksjon endrer attributen andreValg til True, ellers til False. Tar 'self' som parameter og ingen returverdier."""
         skrivOrd("")
         skrivOrd(f"Du møter Olivia i mattetimen. Dere snakker litt underveis, men får ordentlig tid til å bli kjent i pausen.")
         skrivOrd("Hun viser deg en av hennes favorittbøker.")
@@ -62,6 +63,7 @@ class Olivia(Person): # Her har vi den første subklassen til Person hvor denne 
             self.andreValg = False
     
     def sisteSpørsmål(self): #Alle karakterene har denne funksjonen. Spilles av etter andreSpørsmål. 
+        """Funksjonen skriver ut det siste spørsmålet fra Olivia. En positiv reaksjon gjør at attributen sisteValg blir True, ellers blir den False. Tar parameter 'self' og ingen returverdier."""
         skrivOrd("")
         skrivOrd("Olivia: Jeg har et veldig viktig spørsmål for deg. ")
         skrivOrd(f"{spillerNavn}: Oi. Nå ble jeg nervøs. ")
@@ -78,6 +80,7 @@ class Olivia(Person): # Her har vi den første subklassen til Person hvor denne 
             skrivOrd(f"Du er en merkelig type {spillerNavn}")
 
     def braEnding(self): #Alle karakterene har denne funksjonen. Spilles av hvis 2/3 valg  eller 3/3 valg er positive
+        """Funksjonen skriver ut den bra endingen til Olivia. Den tar 'self' som parameter og tar ingen returverdier """
         skrivOrd("")
         skrivOrd("(Det er nå to uker senere, og du og Olivia har blitt mye bedre kjent. En dag sitter dere og snakker hjemme hos henne.")
         skrivOrd("Olivia: Du, vi passer egentlig ganske godt sammen, har du tenkt over det?")
@@ -88,6 +91,7 @@ class Olivia(Person): # Her har vi den første subklassen til Person hvor denne 
         skrivOrd("Du fikk ending 1, den brae endingen til Olivia, gratulerer! Det er totalt 6 forskjellige endings i spillet.")
 
     def dårligEnding(self): #Alle karakterene har denne funksjonen. Spilles av hvis 2/3 valg eller 3/3 valg er negative
+        """Funksjonen skriver ut den dårlige endingen til Olivia. Den tar 'self' som parameter og tar ingen returverdier."""
         skrivOrd("")
         skrivOrd("(Olivia likte deg fra første gang dere møttes, men var redd for å si noe)")
         skrivOrd("(Etter at du og Olivia ikke kom godt overens, var Olivia helt knust. Hun droppet ut av skolen rett før slutten av vg3, og bor i dag i kjelleren til moren, uten å ha oppnådd noe i livet.)")
@@ -98,7 +102,8 @@ class Kat(Person):
     def __init__(self, navn, alder, liker, likerIkke, linje, førsteValg=0, andreValg=0, sisteValg=0) -> None:
         super().__init__(navn, alder, liker, likerIkke, linje, førsteValg, andreValg=0, sisteValg=0)
 
-    def førsteSpørsmål(self):
+    def førsteSpørsmål(self): #Det første spørsmålet som stilles fra Kat, introduksjonen hennes
+        """Funksjonen skriver ut introduksjonen til Kat. For en frekk introduksjon lagres attributen førsteValg som False, for en vennlig introduksjon lagres den som True. Tar 'self' som parameter og gir ingen returverdier."""
         skrivOrd(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         førsteValg = sjekkVennFrekk()
         if førsteValg == "vennlig":
@@ -118,7 +123,8 @@ class Kat(Person):
             skrivOrd("(Kat snur seg og går.)")
             skrivOrd("")
         
-    def andreSpørsmål(self):
+    def andreSpørsmål(self): #Det andre spørsmålet som stilles fra Kat 
+        """Funksjonen skriver ut spørsmål nr 2 fra Kat. Lagrer attributen andreValg som True hvis svaret mottas bra, ellers som False. Parameter 'self' og ingen returverdier."""
         skrivOrd("")
         skrivOrd("Du møter på Kat på bussholdeplassen på vei hjem.")
         skrivOrd(f"Kat: Hei {spillerNavn}, tar du også 3-bussen?")
@@ -133,7 +139,8 @@ class Kat(Person):
             self.andreValg = False
             skrivOrd("Kat: Hvilket spill er det? Har aldri hørt om det før. ")
 
-    def sisteSpørsmål(self):
+    def sisteSpørsmål(self): #Det siste spørsmålet som stilles fra Kat
+        """Funksjonen skriver ut det siste spørsmålet til Kat. Hvis svaret blir motatt positivt endres attributen sisteValg til True, ellers til False. Tar 'self' som parameter og returnerer ingen verdier."""
         skrivOrd("")
         skrivOrd("Kat: Du, jeg har et spørsmål til deg.")
         skrivOrd(f"{spillerNavn}: Oi, er det noe viktig?")
@@ -152,15 +159,17 @@ class Kat(Person):
             self.sisteValg = False
             skrivOrd("Kat: Hæ hva mener du med det?")
 
-    def braEnding(self):
+    def braEnding(self): #Den bra endingen til Kat. Utløses når 2/3 eller 3/3 valg ble motatt positivt
+        """Funksjonen skriver ut den bra endingen til Kat. Tar 'self' som parameter og gir ingen returverdier."""
         skrivOrd("")
         skrivOrd("(Etter en uke er du og Kat blitt veldig nære venner. Dere er hjemme hos deg og spiller Minecraft sammen.")
-        skrivOrd("(Kat snur seg mot deg og kysser deg. Du blir overrasket, men kysser hun tilbake.)")
+        skrivOrd("(Kat snur seg og smiler til deg. Du smiler tilbake.)")
         skrivOrd("(Ett år senere er dere fortsatt sammen. Kat ble proff esportspiller og har allerede tjent store premiepenger i forskjellige konkurranser.)")
         skrivOrd("")
         skrivOrd("Du fikk ending 3, den brae endingen til Kat, gratulerer! Det er totalt 6 forskjellige endings i spillet.")
 
-    def dårligEnding(self):
+    def dårligEnding(self): #Den dårlige endingen til Kat. Utløses når 2/3 eller 3/3 valg ble motatt negativt
+        """Funksjonen skriver ut den dårlige endingen til Kat. Tar 'self' som parameter og gir ingen returverdier."""
         skrivOrd("")
         skrivOrd("(Du og Kat har gått dårlig overens den første skoledagen på den nye skolen. Dagen etter finner du en lapp i skapet ditt.)")
         skrivOrd("Lapp: Finn meg bak skolen ved søppeldunken kl 14.00. -Kat")
@@ -176,11 +185,12 @@ class Brian(Person):
     def __init__(self, navn, alder, liker, likerIkke, linje, førsteValg=0, andreValg=0, sisteValg=0) -> None:
         super().__init__(navn, alder, liker, likerIkke, linje, førsteValg, andreValg, sisteValg)
     
-    def introduksjon(self):
-        """Funksjonen introduserer Brian med pronomen han."""
+    def introduksjon(self): #Introduksjon for Brian på starten av spillet
+        """Funksjonen introduserer Brian med pronomen han. Parameter 'self' og ingen returverdier"""
         skrivOrd(f"{self.navn}, han er {self.alder} år gammel. Han liker {self.liker}, men liker ikke {self.likerIkke}. Han går {self.linje}.")
 
-    def førsteSpørsmål(self):
+    def førsteSpørsmål(self): #Det første spørsmålet til Brian, introduksjonen, som man spiller gjennom hver runde. 
+        """Funksjonen skriver ut det introduksjonen til Brian. Lagrer attributen førsteValg som True for en vennlig introduksjon, men False for en frekk introduksjon. Parameter 'self' men ingen returverdier"""
         skrivOrd(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
         førsteValg = sjekkVennFrekk()
         if førsteValg == "vennlig":
@@ -197,7 +207,8 @@ class Brian(Person):
             skrivOrd("(Du går vekk)")
             skrivOrd("")
             
-    def andreSpørsmål(self):
+    def andreSpørsmål(self): #Spørsmål nummer 2 fra Brian. Utløses hvis man velger Brian som fokus etter introduksjonene.
+        """Funksjonen skriver ut det andre spørsmålet til Brian. For et riktig svar vil attributen andreValg lagres som True, eller lagres den som False. Den har 'self' som parameter og ingen returverdier. """
         skrivOrd("")
         skrivOrd(f"Du møter Brian i spansktimen. Han lurer litt på hva du liker og ikke liker.")
         skrivOrd("Brian: Hva synes du om filmer? ")
@@ -225,7 +236,8 @@ class Brian(Person):
             skrivOrd("Brian: Hæ")
             self.andreValg = False
     
-    def sisteSpørsmål(self):
+    def sisteSpørsmål(self): #Det siste spørsmålet fra Brian. Utløses etter det andre spørsmålet
+        """Funksjonen skriver ut det siste spørsmålet. Hvis man svarer riktig lagres sisteValg attributen som True, ellers lagres den som False. Den har 'self' som parameter og ingen returverdier."""
         skrivOrd("")
         skrivOrd("Brian: Yo kiz æ har et viktig spørsmål te dæ")
         skrivOrd(f"{spillerNavn}: Ait bet ka e det? ")
@@ -241,7 +253,8 @@ class Brian(Person):
             self.sisteValg = False
             skrivOrd(f"Virkelig??")
 
-    def braEnding(self):
+    def braEnding(self): #Den bra endingen til Brian. Utløses når 2/3 eller 3/3 valg ble motatt positivt
+        """Funksjonen skriver ut teksten til den bra endingen til Brian. 'self' som parameter og ingen returverdier."""
         skrivOrd("")
         skrivOrd("(Du tenker til deg selv at Brian var en snillere elev enn du trodde.)")
         skrivOrd("(Brian kommer senere under oppsyn av politiet for drap.)")
@@ -250,7 +263,8 @@ class Brian(Person):
         skrivOrd("")
         skrivOrd("Du fikk ending 5, den brae endingen til Brian, gratulerer! Det er totalt 6 forskjellige endings i spillet.")
 
-    def dårligEnding(self):
+    def dårligEnding(self): #Den dårlige endingen til Brian. Utløses når 2/3 eller 3/3 valg ble motatt negativt
+        """Funksjonen skriver ut teksten til den dårlige endingen til Brian. Parameter 'self' og ingen returverdier."""
         skrivOrd("")
         skrivOrd("(Brian virket fortsatt ganske hyggelig etter deres tidligere møte og innviterte deg ut å drikke)")
         skrivOrd("(Dere drakk ekstremt mye så du klarer ikke komme deg hjem.)")
@@ -262,29 +276,35 @@ class Brian(Person):
         skrivOrd("")
         skrivOrd("Du fikk ending 6, den dårlige endingen til Brian. Det er totalt 6 forskjellige endings i spillet.")
 
-def gyldigSvar(valg):
-    while valg!="Olivia":
+#Sikrer at svaret som skrives inn enten er "Olivia", "Brian" eller "Kat"
+def gyldigSvar():
+    """Funksjonen kjører om igjen helt til spilleren skriver inn 'Olivia', 'Brian' eller 'Kat'. Den har ingen parametere men returnerer valget spilleren tar av de tre personene."""
+    i = 0
+    while i==0:
         valg=input()
         if valg=="Brian":
             break
         elif valg=="Kat":
             break
-        elif valg != "Olivia":
+        elif valg=="Olivia":
+            break
+        else:
             skrivOrd("Navnet er ikke gyldig, prøv på nytt.")
     return valg
-    
+
+#Sikrer at svaret som skrives inn enten er "frekk" eller "vennlig" 
 def sjekkVennFrekk():
+    """Funksjonen kjører om igjen helt til spilleren inputer 'frekk' eller 'vennlig', og skriver ut en feilmelding hvis svaret ikke er gyldig. Den har ingen parametere men returnerer valget spilleren tar, 'frekk' eller 'vennlig'."""
     i=0
     while i==0:
         valg=input()
-        if valg=="frekk":
+        if valg=="frekk" or valg == "Frekk":
             break
-        elif valg == "vennlig":
+        elif valg == "vennlig" or valg == "Vennlig":
             break
         else:
             skrivOrd("Svaret er ikke gyldig, prøv på nytt.")
     return valg
-    print("")
     
 #Sjekker om inputen fra spilleren er positivt eller negativt ladd
 def sjekkLaddeOrd(spillerValg):
@@ -344,15 +364,15 @@ skrivOrd("")
 
 skrivOrd(f"Hvem vil du snakke med? {personListe[0]}, {personListe[1]} eller {personListe[2]}? ") #Spilleren velger den første personen de vil snakke med. Man må snakke med alle tre for å bli introdusert ordentlig, men kan velge rekkefølgen
 personValg1 = ""
-personValg1 = gyldigSvar(personValg1)
+personValg1 = gyldigSvar()
 i=0
 
 if personValg1 == "Olivia": #Lar personen velge rekkefølgen man vil snakke med personene i. Inneholder også biter med kode som passer på at det som skrives inn er gyldig.
-    Olivia.førsteSpørsmål()
-    personListe.remove("Olivia")
+    Olivia.førsteSpørsmål() #Utløser første spørsmål fra Olivia
+    personListe.remove("Olivia") #Fjerner Olivia fra listen med tilgjengelige personer å snakke med
     skrivOrd(f"Hvem vil du snakke med nå? {personListe[0]} eller {personListe[1]}? ")
     nestValg1=""
-    while i==0:
+    while i==0: #En while-løkke som gjør at bare de to personene som kan skrives inn er gyldige svar
         nesteValg1=input()
         if nesteValg1==personListe[0]:
             break
@@ -360,19 +380,19 @@ if personValg1 == "Olivia": #Lar personen velge rekkefølgen man vil snakke med 
             break
         else:
             skrivOrd("Navnet er ikke gyldig, prøv på nytt.")
-    if nesteValg1 == "Brian":
+    if nesteValg1 == "Brian": #Hvis neste valg er Brian, utløses hans introduksjon og han fjernes fra listen over personer
         Brian.førsteSpørsmål()
         personListe.remove("Brian")
-    elif nesteValg1 == "Kat":
+    elif nesteValg1 == "Kat": #Hvis neste valg er Kat, utløses hennes introduksjon og hun fjernes fra listen over personer
         Kat.førsteSpørsmål()
         personListe.remove("Kat")        
 
 elif personValg1 == "Brian": 
-    Brian.førsteSpørsmål()
-    personListe.remove("Brian")
+    Brian.førsteSpørsmål() #Utløser første spørsmål fra Brian
+    personListe.remove("Brian") #Fjerner Brian fra listen med tilgjengelige personer å snakke med
     skrivOrd(f"Hvem vil du snakke med nå? {personListe[0]} eller {personListe[1]}? ")
     nesteValg1 = ""
-    while i==0:
+    while i==0: #En while-løkke som gjør at bare de to personene som kan skrives inn er gyldige svar
         nesteValg1=input()
         if nesteValg1==personListe[1]:
             break
@@ -380,19 +400,19 @@ elif personValg1 == "Brian":
             break
         else:
             skrivOrd("Navnet er ikke gyldig, prøv på nytt.")
-    if nesteValg1 == "Olivia":
+    if nesteValg1 == "Olivia": #Hvis neste valg er Olivia, utløses hennes introduksjon og hun fjernes fra listen over personer
         Olivia.førsteSpørsmål()
         personListe.remove("Olivia")
-    elif nesteValg1 == "Kat":
+    elif nesteValg1 == "Kat": #Hvis neste valg er Kat, utløses hennes introduksjon og hun fjernes fra listen over personer
         Kat.førsteSpørsmål()        
         personListe.remove("Kat")
 
 elif personValg1 == "Kat": 
-    Kat.førsteSpørsmål()
-    personListe.remove("Kat")
+    Kat.førsteSpørsmål() #Utløser første spørsmål fra Kat
+    personListe.remove("Kat") #Fjerner Kat fra listen med tilgjengelige personer å snakke med
     skrivOrd(f"Hvem vil du snakke med nå? {personListe[0]} eller {personListe[1]}? ")
     nesteValg1 = ""
-    while nesteValg1!=personListe[0]:
+    while i==0: #En while-løkke som gjør at bare de to personene som kan skrives inn er gyldige svar
         nesteValg1=input()
         if nesteValg1==personListe[1]:
             break
@@ -400,13 +420,14 @@ elif personValg1 == "Kat":
             break
         else:
             skrivOrd("Navnet er ikke gyldig, prøv på nytt.")
-    if nesteValg1 == "Brian":
+    if nesteValg1 == "Brian": #Hvis neste valg er Brian, utløses hans introduksjon og han fjernes fra listen over personer
         Brian.førsteSpørsmål()
         personListe.remove("Brian")
-    elif nesteValg1 == "Olivia":
+    elif nesteValg1 == "Olivia": #Hvis neste valg er Kat, utløses hennes introduksjon og hun fjernes fra listen over personer
         Olivia.førsteSpørsmål()
         personListe.remove("Olivia")
 
+#Utløser introduksjonen for den siste personen som er igjen i listen etter at spilleren har valgt to ganger
 if personListe[0] == "Olivia":
     Olivia.førsteSpørsmål()
 elif personListe[0] == "Brian":
@@ -419,7 +440,7 @@ skrivOrd("Timen starter, så du har ikke tid til å snakke med flere. I timen si
 skrivOrd("")   
 skrivOrd("Du føler deg spesielt tiltrukket til en av dem, og tenker at du vil bli ekstra godt kjent med de. Hvem er det?")
 personValg2 = ""
-personValg2 = gyldigSvar(personValg2) #Lar spilleren velge hvilken person de vil snakke videre med. Da lukkes endings for de andre to personene.
+personValg2 = gyldigSvar() #Lar spilleren velge hvilken person de vil snakke videre med. Da lukkes endings for de andre to personene.
 
 if personValg2 == "Olivia": #Gjør om fra tekstinputen som er en string og til subklassen til personen
     personValg2 = Olivia
