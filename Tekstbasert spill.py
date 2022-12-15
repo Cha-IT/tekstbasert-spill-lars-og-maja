@@ -286,7 +286,9 @@ def sjekkVennFrekk():
     return valg
     print("")
     
+#Sjekker om inputen fra spilleren er positivt eller negativt ladd
 def sjekkLaddeOrd(spillerValg):
+    """Funksjonen tar inn en tekststreng og sjekker hvert ord opp mot to lister, en med positivt ladde ord og en annen med negativt ladde ord. Den tar inn en tekststreng, som vil være inputen til spilleren, endrer så på den boolske verdien til variabelen (True for positivt og False for negativt), og returnerer denne nye verdien."""
     if " " in spillerValg:
             spillerValg = spillerValg.split()
             for i in spillerValg:
@@ -304,24 +306,27 @@ def sjekkLaddeOrd(spillerValg):
             if spillerValg == k:
                 spillerValg = True
     return spillerValg
-        
+
+#Bytter ut "print" og skriver ut hvert ord separat med 0.15 sekunder mellom hver  
 def skrivOrd(tekst):
+    """Funksjonen skriver ut slik en print-funksjon gjør, men med 0.15 sekunder mellom hvert ord. Den tar inn tekststrenger, og returnerer ingenting."""
     x = tekst.split()
     for m in x:
         print(m+" ", end="")
         time.sleep(0.15)
     print("")
 
+#To lister, den ene inneholder positivt ladde ord og den andre negativt ladde ord. Disse brukes til å sammenlikne med inputs fra spilleren for å tolke om inputen er positiv eller negativ
 positiveOrd = ["Ja", "ja", "Definitivt", "definitivt", "Jepp", "jepp", "Jupp", "jupp", "Yes", "yes", "Jada", "jada", "Jo", "jo", "Ganske", "ganske", "Sikkert", "sikkert", "Jau", "jau"]
 negativeOrd = ["Nei", "nei", "Ikke", "ikke", "Niks", "niks", "Tvilsomt", "tvilsomt", "Nope", "nope", "Nah", "nah", "No", "no", "Tja", "tja", "Tviler", "tviler", "idk", "Idk"]
 
-Olivia = Olivia("Olivia", 18, "å bake", "trening", "studiespesialisering")
-Brian = Brian("Brian", 20, "film", "edderkopper", "MK")
-Kat = Kat("Kat", 19, "videospill", "skole", "Esport")
+Olivia = Olivia("Olivia", 18, "å bake", "trening", "studiespesialisering") #Definerer verdiene til attributtene til subklassen Olivia
+Brian = Brian("Brian", 20, "film", "edderkopper", "MK") #Definerer verdiene til attributtene til subklassen Brian
+Kat = Kat("Kat", 19, "videospill", "skole", "Esport") #Definerer verdiene til attributtene til subklassen Kat
 
-personListe = ["Olivia", "Brian", "Kat"]
+personListe = ["Olivia", "Brian", "Kat"] #Definerer listen over personene, som brukes i dannelsen av rekkefølgen som spilleren bestemmer
 
-
+#Her starter selve spillet, alt over er definisjoner av klasser, subklasser, funksjoner, ordbøker og lister
 skrivOrd("")
 skrivOrd("Hei, velkommen til charlottenlund videregående skole. Det er din første dag på denne skolen etter at du flyttet fra gokk(Malvik). Nå er det lunsj, men du fant ingen å spise lunsj med i klassen din. Du ser tre vennlige fjes som du kanskje vil bli kjent med bedre.")
 skrivOrd("Hva heter du?")
