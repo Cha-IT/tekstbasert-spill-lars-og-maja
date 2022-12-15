@@ -1,33 +1,25 @@
-class Person():
-    def __init__(self, navn, alder, liker, likerIkke, linje, valg2=0, valg3=0) -> None:
+import time
+class Person(): #Her har vi en klasse for person. Alle personene følger denne og har egne subklasser innenfor som du bl.a ser på linje 15 nedenfor.
+    def __init__(self, navn, alder, liker, likerIkke, linje, valg2=0, valg3=0) -> None: #Her legger vi til atributtene navn, alder, hva de liker og ikke i tillegg til linjen de går.
         self.navn = navn
         self.alder = alder
         self.liker = liker
         self.likerIkke = likerIkke
         self.linje = linje
-        self.valg2 = valg2
+        self.valg2 = valg2 # Valgene er også atributter som har startverdi 0 og som endres til boolean for en positiv eller negativ reaksjon senere i programmet.
         self.valg3 = valg3
     
-    def introduksjon(self):
+    def introduksjon(self): # Her har vi en metode innenfor Person som introduserer personen. De forskjellige klassene bruker også denne bortsett fra Brian sin hvor den oppdateres til å skrive ut "han" istedenfor "hun". Under ser vi også en forklaring av metoden som vil vises når du bruker den.
         """Funksjonen introduserer personene som er subklasser av Person-klassen. Defaulten er med pronomen hun og brukes for Olivia og Kat."""
         print(f"{self.navn}, hun er {self.alder} år gammel. Hun liker {self.liker}, men liker ikke {self.likerIkke}. Hun går {self.linje}.")
 
-class Olivia(Person):
+class Olivia(Person): # Her har vi den første subklassen til Person hvor denne har alle funksjonene til Olivia
     def __init__(self, navn, alder, liker, likerIkke, linje, valg2=0, valg3=0) -> None:
-        super().__init__(navn, alder, liker, likerIkke, linje, valg2, valg3)
+        super().__init__(navn, alder, liker, likerIkke, linje, valg2, valg3) # Her innhenter den de tidligere atributtene til Person.
         
-    def førsteSpørsmål(self):
-        print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
-        valg2 = ""
-        i=0
-        while i==0:
-            valg2=input()
-            if valg2=="frekk":
-                break
-            elif valg2 == "vennlig":
-                break
-            else:
-                print("Svaret er ikke gyldig, prøv på nytt.")
+    def førsteSpørsmål(self): # Alle karakterene har en lik funksjon som heter førsteSpørsmål, men hva de sier er ulikt som forklarer hvorfor de står i hver subklasse.
+        print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?") # Her får du spørsmålet om du vil være vennlig eller frekk
+        valg2 = sjekkVennFrekk()
         if valg2 == "vennlig":
             self.valg2 = True
             print("")
@@ -54,7 +46,19 @@ class Olivia(Person):
         print("Hun viser deg en av hennes favorittbøker.")
         print("Olivia: Han er så flink til å skrive! Kjenner du til forfatteren?")
         forfatterSvar = input()
-        if forfatterSvar == "Nei":
+        forfatterSvarNegativt = False
+        if " " in forfatterSvar:
+            forfatterSvar = forfatterSvar.split()
+            for i in forfatterSvar:
+                for j in negativeOrd:
+                    if i == j:
+                        forfatterSvarNegativt = True
+                        print("True")
+        else:
+            for j in negativeOrd:
+                if forfatterSvar == j:
+                    forfatterSvarNegativt = True
+        if forfatterSvarNegativt == True:
             print("Olivia: Jaja, det er helt greit.")
             self.valg3 = False
         elif forfatterSvar == "Lars Larsson":
@@ -103,17 +107,7 @@ class Kat(Person):
 
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
-        valg2 = ""
-        i=0
-        while i==0:
-            valg2=input()
-            if valg2=="frekk":
-                break
-            elif valg2 == "vennlig":
-                break
-            else:
-                print("Svaret er ikke gyldig, prøv på nytt.")
-                
+        valg2 = sjekkVennFrekk()
         if valg2 == "vennlig":
             self.valg2 = True
             print("")
@@ -195,16 +189,7 @@ class Brian(Person):
 
     def førsteSpørsmål(self):
         print(f"Du går bort til {self.navn} og introduserer deg selv. Vil du være vennlig eller frekk?")
-        valg2 = ""
-        i==0
-        while i==0:
-            valg2=input()
-            if valg2=="frekk":
-                break
-            elif valg2 == "vennlig":
-                break
-            else:
-                print("Svaret er ikke gyldig, prøv på nytt.")
+        valg2 = sjekkVennFrekk()
         if valg2 == "vennlig":
             self.valg2 = True
             print(f"{spillerNavn}: Hei! Jeg er ny her og syntest du så snill ut. Jeg heter {spillerNavn}.")
@@ -290,13 +275,27 @@ def gyldigSvar(valg):
         elif valg != "Olivia":
             print("Navnet er ikke gyldig, prøv på nytt.")
     return valg
+    
+def sjekkVennFrekk():
+    i=0
+    while i==0:
+        valg=input()
+        if valg=="frekk":
+            break
+        elif valg == "vennlig":
+            break
+        else:
+            print("Svaret er ikke gyldig, prøv på nytt.")
+    return valg
+        
+positiveOrd = ["Ja", "ja", "Definitivt", "definitivt", "Jepp", "jepp", "Jupp", "jupp", "Yes", "yes", "Jada", "jada", "Jo", "jo", "Ganske", "ganske", "Sikkert", "sikkert", "Jau", "jau"]
+negativeOrd = ["Nei", "nei", "Ikke", "ikke", "Niks", "niks", "Tvilsomt", "tvilsomt", "Nope", "nope", "Nah", "nah", "No", "no", "Tja", "tja", "Tviler", "tviler", "idk", "Idk"]
 
 Olivia = Olivia("Olivia", 18, "å bake", "trening", "studiespesialisering")
 Brian = Brian("Brian", 20, "film", "edderkopper", "MK")
 Kat = Kat("Kat", 19, "videospill", "skole", "Esport")
 
-list = ["Olivia", "Brian", "Kat"]
-listcopy = list
+personListe = ["Olivia", "Brian", "Kat"]
 
 
 print("")
@@ -314,76 +313,76 @@ Kat.introduksjon()
 print("")
 
 
-print(f"Hvem vil du snakke med? {list[0]}, {list[1]} eller {list[2]}? ")
+print(f"Hvem vil du snakke med? {personListe[0]}, {personListe[1]} eller {personListe[2]}? ")
 valg1 = ""
 valg1 = gyldigSvar(valg1)
 i=0
 
 if valg1 == "Olivia": 
     Olivia.førsteSpørsmål()
-    list.remove("Olivia")
-    print(f"Hvem vil du snakke med nå? {list[0]} eller {list[1]}? ")
+    personListe.remove("Olivia")
+    print(f"Hvem vil du snakke med nå? {personListe[0]} eller {personListe[1]}? ")
     nestValg1=""
     while i==0:
         nesteValg1=input()
-        if nesteValg1==list[0]:
+        if nesteValg1==personListe[0]:
             break
-        elif nesteValg1==list[1]:
+        elif nesteValg1==personListe[1]:
             break
         else:
             print("Navnet er ikke gyldig, prøv på nytt.")
     if nesteValg1 == "Brian":
         Brian.førsteSpørsmål()
-        list.remove("Brian")
+        personListe.remove("Brian")
     elif nesteValg1 == "Kat":
         Kat.førsteSpørsmål()
-        list.remove("Kat")        
+        personListe.remove("Kat")        
 
 elif valg1 == "Brian": 
     Brian.førsteSpørsmål()
-    list.remove("Brian")
-    print(f"Hvem vil du snakke med nå? {list[0]} eller {list[1]}? ")
+    personListe.remove("Brian")
+    print(f"Hvem vil du snakke med nå? {personListe[0]} eller {personListe[1]}? ")
     nesteValg1 = ""
     while i==0:
         nesteValg1=input()
-        if nesteValg1==list[1]:
+        if nesteValg1==personListe[1]:
             break
-        elif nesteValg1 == list[0]:
+        elif nesteValg1 == personListe[0]:
             break
         else:
             print("Navnet er ikke gyldig, prøv på nytt.")
     if nesteValg1 == "Olivia":
         Olivia.førsteSpørsmål()
-        list.remove("Olivia")
+        personListe.remove("Olivia")
     elif nesteValg1 == "Kat":
         Kat.førsteSpørsmål()        
-        list.remove("Kat")
+        personListe.remove("Kat")
 
 elif valg1 == "Kat": 
     Kat.førsteSpørsmål()
-    list.remove("Kat")
-    print(f"Hvem vil du snakke med nå? {list[0]} eller {list[1]}? ")
+    personListe.remove("Kat")
+    print(f"Hvem vil du snakke med nå? {personListe[0]} eller {personListe[1]}? ")
     nesteValg1 = ""
-    while nesteValg1!=list[0]:
+    while nesteValg1!=personListe[0]:
         nesteValg1=input()
-        if nesteValg1==list[1]:
+        if nesteValg1==personListe[1]:
             break
-        elif nesteValg1 == list[0]:
+        elif nesteValg1 == personListe[0]:
             break
         else:
             print("Navnet er ikke gyldig, prøv på nytt.")
     if nesteValg1 == "Brian":
         Brian.førsteSpørsmål()
-        list.remove("Brian")
+        personListe.remove("Brian")
     elif nesteValg1 == "Olivia":
         Olivia.førsteSpørsmål()
-        list.remove("Olivia")
+        personListe.remove("Olivia")
 
-if list[0] == "Olivia":
+if personListe[0] == "Olivia":
     Olivia.førsteSpørsmål()
-elif list[0] == "Brian":
+elif personListe[0] == "Brian":
     Brian.førsteSpørsmål()
-elif list[0] == "Kat":
+elif personListe[0] == "Kat":
     Kat.førsteSpørsmål()
 
 print("")
